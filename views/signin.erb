@@ -1,0 +1,27 @@
+Hello There!
+
+Welcome to the New Twitter,
+
+<b>
+	<%=@user.fname if@user%>
+</b>
+
+<br>
+
+Please sign in below:
+
+<form action="sessions/new" method="POST">
+	<label for="email">Email</label>
+	<input type="text" name="email">
+	<label for="password">Password</label>
+	<input type="password" name="password">
+	<input type="submit">
+</form>
+
+If you are a new user, please sign up below on this link:
+<a href="/users/new">Sign Up</a>.
+
+<br>
+
+To logout, please click the link below:
+<a href="/logout">Log Out</a>.	
