@@ -6,6 +6,8 @@
 		</title>
 	</head>
 	<body>
+		<%=flash[:notice] if flash[:notice] %>
+		<%=flash[:alert] if flash[:alert] %>
 		<%= yield %>
 	</body>
 </html>

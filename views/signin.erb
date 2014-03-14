@@ -3,7 +3,7 @@ Hello There!
 Welcome to the New Twitter,
 
 <b>
-	<%=@user.fname if@user%>
+	<%=@user.full_name if@user%>
 </b>
 
 <br>
@@ -24,4 +24,11 @@ If you are a new user, please sign up below on this link:
 <br>
 
 To logout, please click the link below:
-<a href="/logout">Log Out</a>.	
+<a href="/logout">Log Out</a>.
+
+Here are all the posts so far:
+
+<%Post.all.each do |post|%>
+	<%=post.entry%>
+	<br>
+<%end%>

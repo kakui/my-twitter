@@ -12,11 +12,6 @@ require 'rack-flash'
 enable :sessions
 use Rack::Flash, :sweep => true
 
-# get '/' do
-# 	erb :home
-# end
-
-
 def current_user
 	#if user signed in
 	if session[:user_id]
@@ -44,11 +39,13 @@ post '/sessions/new' do
 	if @user && @user.password == params[:password]
 		flash[:notice] = "You've been successfully logged in."
 		#have app remember that they're logged in
+		#this is not working
 		session[:user_id] = @user.id
+		redirect '/personal'
 	else
 		flash[:alert] = "There was a problem signing you in. Please try again"
+		redirect '/'
 	end
-	redirect '/personal'
 	# puts "PARAMS ARE" + params.inspect
 	## This just shows email and pw on terminal. Checks if input is working.
 end
@@ -70,7 +67,7 @@ get '/personal' do
 end
 
 post '/personal' do
-	Post.create(entry: params[:entry])
+	Post.create(entry: params[:entry], user_id: current_user.id)
 	redirect '/personal'
 end
 
@@ -78,3 +75,15 @@ get '/logout' do
 	session[:user_id] = nil
 	redirect '/'
 end
+
+=begin
+
+1.Need to associate post to user
+	Is Post a join table?
+	What does params do again?
+2. display post on personal.erb by using something similar to <%=@user.fname if@user%>
+
+
+Post.create(entry: params[:entry], user_id: current_user.id)
+
+=end

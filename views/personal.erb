@@ -2,8 +2,18 @@ Post your Tweets here!
 
 <form action="/personal" method="POST">
 	<label for="entry">Blog Entry</label>
-	<input type="text" name="entry">
+	<input type="text" name="entry"> 
 	<input type="submit">
 </form>
 
 <a href="/">Return to Home Page</a>.
+
+Here are all your posts:
+
+<br>
+
+
+<%current_user.posts.each do |cool_post|%>
+	<%=cool_post.entry%>
+	<br>
+<%end%>
